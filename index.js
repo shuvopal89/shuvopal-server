@@ -10,6 +10,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(cors());
 
+app.get('/', (req, res) => {
+    return res.status(200).json({
+        msg: 'SERVER IS RUNNING'
+    })
+})
+
 app.post('/getMessage', async (req, res) => {
     try {
         const { firstname, lastname, email, phone, message } = req.body;
@@ -78,12 +84,6 @@ app.post('/getMessage', async (req, res) => {
         console.error('Error sending email:', err);
         res.status(500).send('Failed to send message or something went to wrong!');
     }
-})
-
-app.get('/', (req, res) => {
-    return res.status(200).json({
-        msg: 'SERVER IS RUNNING'
-    })
 })
 
 
